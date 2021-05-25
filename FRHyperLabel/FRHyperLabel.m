@@ -97,10 +97,10 @@ static UIColor *FRHyperLabelLinkColorHighlight;
     NSRange range = [self.attributedText.string rangeOfString:substring];
     if (range.length) {
         [self setLinkForRange:range withAttributes:attribute andLinkHandler:^(FRHyperLabel *label, NSRange range){
-            if ([label.attributedText.string length] >= range.length) {
+            if ([label.attributedText.string length] > range.length) {
                 handler(label, [label.attributedText.string substringWithRange:range]);
             }else {
-                handler(label, [label.attributedText.string substringWithRange:NSMakeRange(0, label.attributedText.string.length)]);
+                handler(label, [label.attributedText.string substringWithRange:NSMakeRange(0, (int)label.attributedText.string.length - 1)]);
             }
         }];
     }
@@ -284,3 +284,4 @@ static UIColor *FRHyperLabelLinkColorHighlight;
 
 
 @end
+
